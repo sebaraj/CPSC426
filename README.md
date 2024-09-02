@@ -1,0 +1,37 @@
+# Problem sets and starter code for CS426 (Fall 2024) at Yale.
+
+Please make sure you read and understood the [Collaboration and AI Policy](collaboration_and_ai_policy.md) and [Time Logging](time_logging.md).
+
+## Development Environment
+See the guide [here](devenv/README.md).
+
+## Labs
+ - Lab 0: introduction to Go and concurrent programming (easy)
+   - [preview](lab0/lab0.md)
+   - Due 23:59 ET Wed Sep 18, 2024
+ - Lab 1: microservice (moderate)
+   - Due
+ - Lab 2: deployment and operations (easy)
+   - Due
+ - Lab 3: Raft with static cluster membership (hard+)
+   - Due
+ - Lab 4: Sharded key-value cache (moderate)
+   - Due
+ - Lab 5: Final project
+   - [Requirements and ideas **from 2023 for reference**](https://docs.google.com/document/d/1694jDeCSZGjjKd7LjFNTfHUWFBSlz1BaTDkpEsHvfOU/edit?usp=sharing)
+   - Proposals due:
+   - Final deliverables due: (Last day of final exam; you may not be able to use the discretionary hours as per Yale College's regulations.)
+
+## Questions?
+Post to Canvas/Ed (preferred) or email the teaching staff:
+  - Richard Yang (yry@cs.yale.edu)
+  - Xiao Shi (xiao.shi.9tigers@gmail.com)
+  - Scott Pruett (spruett345@gmail.com)
+  - Bradley Lewis (bradley.lewis@yale.edu)
+  - Ryan Yang (yry@mit.edu)
+
+## Tips on asking good questions / help us help you
+- First, try to find the answer(s) by Googling. See the [Collaboration Policy](collaboration_policy.md) about rules re: code reuse and attribution.
+- For technical questions, prefer posting publicly to Ed such that your classmates may answer your question(s) and benefit from the answer(s).
+- Help your classmates by answering their questions! You are not in competition with one another, so help each other learn!
+- Identify the [**minimum reproducible example**](https://myweb.uiowa.edu/pbreheny/reproducible.html) of your problem. E.g., for Go language related questions, attempt to construct a small example on [Go playground](https://go.dev/play/) (which has sharing functionality).
