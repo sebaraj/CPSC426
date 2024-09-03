@@ -23,6 +23,10 @@ Once the container is running, you can work inside the container as you would on
 Before you start working on the labs, it is advisable to figure out how to transfer files into and from the container to the host machine in order to back up your work. Refer to the docker documentations and try out the relevant commands.
 
 ## Optional
+### Run in VS Code devcontainers
+See `.devcontainer.json`.
+
+### Building your own docker image
 * You can build your own with `docker build -t my-dev-env .` The first build might take a while, but subsequent builds will be faster due to caching.
 * To start the container and launch a bash shell, run `docker run -it -v myhomedir:/home/nonroot my-dev-env /bin/bash`
 * We have provided the docker file so that you may add additional tools or dependencies as needed.

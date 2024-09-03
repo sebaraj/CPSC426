@@ -25,13 +25,12 @@ See the guide [here](devenv/README.md).
 ## Questions?
 Post to Canvas/Ed (preferred) or email the teaching staff:
   - Richard Yang (yry@cs.yale.edu)
-  - Xiao Shi (xiao.shi.9tigers@gmail.com)
+  - Xiao Shi (xiao.shi@yale.edu)
   - Scott Pruett (spruett345@gmail.com)
   - Bradley Lewis (bradley.lewis@yale.edu)
-  - Ryan Yang (yry@mit.edu)
 
 ## Tips on asking good questions / help us help you
-- First, try to find the answer(s) by Googling. See the [Collaboration Policy](collaboration_policy.md) about rules re: code reuse and attribution.
+- First, try to find the answer(s) by Googling. See the [Collaboration Policy](collaboration_and_ai_policy.md) about rules re: code reuse and attribution.
 - For technical questions, prefer posting publicly to Ed such that your classmates may answer your question(s) and benefit from the answer(s).
 - Help your classmates by answering their questions! You are not in competition with one another, so help each other learn!
 - Identify the [**minimum reproducible example**](https://myweb.uiowa.edu/pbreheny/reproducible.html) of your problem. E.g., for Go language related questions, attempt to construct a small example on [Go playground](https://go.dev/play/) (which has sharing functionality).
