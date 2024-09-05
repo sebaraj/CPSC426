@@ -174,7 +174,7 @@ Continue testing your solutions with `go test .` as you implement the various se
 
 Once done implementing `ConcurrentQueue[T]`, run tests with the race detector:
 ```
-go test -race . -run 'Test.*Queue -v'
+go test -race . -v -run 'Test.*Queue'
 ```
 Note that the tests with race detector (`-race`) will take longer to run.
 
@@ -183,7 +183,7 @@ Implement `ParallelFetcher` in `parallel_fetcher.go` using the weighted semaphor
 
 As you implement `ParallelFetcher`, run tests with the race detector:
 ```
-go test -race . -run 'TestFetcher.* -v'
+go test -race . -v -run 'TestFetcher.*'
 ```
 
 ### B3. Building a Semaphore
