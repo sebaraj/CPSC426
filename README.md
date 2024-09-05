@@ -18,7 +18,7 @@ See the guide [here](devenv/README.md).
  - Lab 4: Sharded key-value cache (moderate)
    - Due
  - Lab 5: Final project
-   - [Requirements and ideas **from 2023 for reference**](https://docs.google.com/document/d/1694jDeCSZGjjKd7LjFNTfHUWFBSlz1BaTDkpEsHvfOU/edit?usp=sharing)
+   - [Requirements and ideas **from 2023 for reference**](https://docs.google.com/document/d/1J6Do0IPsnUsrfRx7VFjwPNFUSYVBA0BZ/edit)
    - Proposals due:
    - Final deliverables due: (Last day of final exam; you may not be able to use the discretionary hours as per Yale College's regulations.)
 
