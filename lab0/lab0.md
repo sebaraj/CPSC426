@@ -60,7 +60,7 @@ about the following:
 These questions are meant to test your understanding of the above resources. It may be helpful to complete
 these questions and understand the answers before diving into the coding section of this lab.
 
-You shoudl write your answers in your `discussions.md` file. Keep answers brief.
+You should write your answers in your `discussions.md` file. Keep answers brief.
 
 1) What is the difference between an unbuffered channel and a buffered channel?
 2) Which is the default in Go? Unbuffered or buffered?
