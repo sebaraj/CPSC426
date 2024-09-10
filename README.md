@@ -7,7 +7,7 @@ See the guide [here](devenv/README.md).
 
 ## Labs
  - Lab 0: introduction to Go and concurrent programming (easy)
-   - [preview](lab0/lab0.md)
+   - [spec](lab0/lab0.md)
    - Due 23:59 ET Wed Sep 18, 2024
  - Lab 1: microservice (moderate)
    - Due
@@ -17,7 +17,9 @@ See the guide [here](devenv/README.md).
    - Due
  - Lab 4: Sharded key-value cache (moderate)
    - Due
- - Lab 5: Final project
+ - Lab 5: Distributed machine learning
+   - Due
+ - Lab 6: Final project
    - [Requirements and ideas **from 2023 for reference**](https://docs.google.com/document/d/1J6Do0IPsnUsrfRx7VFjwPNFUSYVBA0BZ/edit)
    - Proposals due:
    - Final deliverables due: (Last day of final exam; you may not be able to use the discretionary hours as per Yale College's regulations.)
