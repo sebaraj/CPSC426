@@ -10,7 +10,8 @@ See the guide [here](devenv/README.md).
    - [spec](lab0/lab0.md)
    - Due 23:59 ET Wed Sep 18, 2024
  - Lab 1: microservice (moderate)
-   - Due
+   - [initial version](lab1/lab1.md)
+   - Due 23:59 ET Wed Sep 25, 2024
  - Lab 2: deployment and operations (easy)
    - Due
  - Lab 3: Raft with static cluster membership (hard+)
