@@ -1,0 +1,41 @@
+ESTIMATE of time to complete assignment: 5 hours
+
+       Time     Time
+Date   Started  Spent  Work Completed
+-----  -------  -----  --------------
+09/04  03:11PM  01:39  read lab0.md, completed written questions, A1, B1, B2, and most of B3, and set up dev environment 
+09/04  05:30PM  00:26  finished B3
+09/04  10:20PM  00:23  wrote unit tests for A2
+09/05  03:30PM  01:10  wrote unit tests for semaphore; re-wrote semaphore to function as binary/counting
+09/05  08:34PM  00:32  wrote unit tests for parallel fetcher
+09/06  11:19AM  00:59  fixed merge functions in A1 to have non-blocking return; moved unit tests for better organization
+09/06  02:55PM  00:17  cleaned up codebase; wrote discussion
+09/07  06:10PM  00:40  wrote unit tests for queue/concurrent queue
+09/08  12:23PM  00:30  checked unit tests
+09/09  11:40AM  00:08  reverted merge functions to old version, to align with Ed Discussion #21
+09/10  03:00PM  00:20  reverted semaphore code to align with Ed Discussion #26
+
+                -----
+                07:04  TOTAL time spent
+
+I discussed my solution with: ChatGPT 4o (see below), GitHub Copilot (for autocompletion, 
+see https://github.com/sebaraj/dotfiles/blob/master/nvim/lua/sebaraj/plugins/nvim-cmp.lua#L7)
+
+DISCUSSION:
+
+My previous experience in CPSC 422 (Operating Systems) and programming in Go
+made this lab conceptually straight-forward. However, I have never used
+channels/select in Go, and as such, had to learn; initially, I had a narrow
+scope of the utility of a channel and this was sufficient enough to complete
+most parts of the lab. However, after recognizing that my assumption that the
+merge functions in part A should themselves be non-blocking (from Ed Discussion
+Question #10), I struggled with the task of returning an error in
+MergeChannelsOrCancel, as the function needed to be non-blocking and return the
+error asynchronously. After struggling with this, I resorted to asking ChatGPT,
+which quickly revealed an alternate use of a channel: to return an error
+as receiving from the channel and send the error to the channel from the
+respective goroutine(s) as they terminate. This allowed me to complete
+this function and pass my added unit tests. I think moving forward, it might be 
+useful to have a central running Ed Discussion post of expected behavior of our code.
+
+
