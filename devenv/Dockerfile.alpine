@@ -20,6 +20,8 @@ RUN adduser -D $USER \
 USER $USER
 WORKDIR $HOME
 
+RUN sudo rm -rf ${HOME}/.cache
+
 # Install Go tools at specific version (Aug 2024)
 RUN go install golang.org/x/tools/cmd/godoc@v0.24.0
 RUN go install golang.org/x/tools/cmd/goimports@v0.24.0
@@ -30,7 +32,6 @@ RUN go install honnef.co/go/tools/cmd/staticcheck@v0.5.1
 RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.5.1 \
     && go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.34.2
 
-RUN sudo rm -rf ${HOME}/.cache
 ENV PATH="/usr/local/go/bin:${PATH}"
 RUN echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
 
