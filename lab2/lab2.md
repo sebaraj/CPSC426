@@ -40,7 +40,7 @@ In addition, as per Part B instructions,
 
 ## Setup
 * Docker and `kubectl` (the Kubernetes CLI) are installed in your devenv container.
-* You have your Kubernetes config file with credentials which was shared to your Yale google drive (like your reading response document). You should see a file named `<NET-ID>.yaml`. This file contains your private key so **don't** share it with others!
+* You have your Kubernetes config file with credentials which was shared to your Yale google drive. You should see a file named `<NET-ID>.yaml`. This file contains your private key so **don't** share it with others!
      - You can merge this file into `~/.kube/config` to use it by default--we will leave it up to you to figure out exactly how to merge it--otherwise you can specify `kubectl --kubeconfig=<PATH-TO-FILE>` for all future steps. For other options on manging kubeconfig files, see the official documentation: https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/
      - If you don't see the config file, email the teaching staff.
 
