@@ -14,9 +14,9 @@ Date   Started  Spent  Work Completed
 09/08  12:23PM  00:30  checked unit tests
 09/09  11:40AM  00:08  reverted merge functions to old version, to align with Ed Discussion #21
 09/10  03:00PM  00:20  reverted semaphore code to align with Ed Discussion #26
-
+09/16  08:08PM  00:30  added more unit tests
                 -----
-                07:04  TOTAL time spent
+                07:34  TOTAL time spent
 
 I discussed my solution with: ChatGPT 4o (see below), GitHub Copilot (for autocompletion, 
 see https://github.com/sebaraj/dotfiles/blob/master/nvim/lua/sebaraj/plugins/nvim-cmp.lua#L7)

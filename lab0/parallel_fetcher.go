@@ -26,7 +26,7 @@ func NewParallelFetcher(fetcher Fetcher, maxConcurrencyLimit int) *ParallelFetch
 	return &ParallelFetcher{
 		fetcher: fetcher,
 		// Add more initialization here
-		sema:      semaphore.NewWeighted(int64(maxConcurrencyLimit)),
+		sema:      semaphore.NewWeighted(int64(max(maxConcurrencyLimit, 1))),
 		callAgain: true,
 	}
 }

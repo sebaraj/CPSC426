@@ -1,6 +1,7 @@
 # CS426 Lab 1: Single-node video recommendation service
 
 ## Overview
+
 In this lab, you will use gRPC and protobuf to implement a specified IDL (interface definition language) for a single node stateless server.
 
 This server will mimic the backend functionality of a video service's landing page and return information that is needed to render a user’s homepage (ranked video recommendation). We will provide several other microservices for user metadata, video metadata, as well as a ranking library. Your service will make RPCs to compute the final results.
@@ -8,7 +9,9 @@ This server will mimic the backend functionality of a video service's landing pa
 As in production services, the provided backend services (as well as the network or the client library) have a certain failure rate and latency profile. You will build smart error handling, retries, and batching logic to improve the reliability of your service. You will also implement monitoring metrics and APIs to improve the observability of your service.
 
 ## Logistics
+
 **Policies**
+
 - Lab 1 is meant to be an **individual** assignment. Please see the [Collaboration Policy](../collaboration_and_ai_policy.md) for details.
 - We will help you strategize how to debug but WE WILL NOT DEBUG YOUR CODE FOR YOU.
 - Please keep and submit a time log of time spent and major challenges you've encountered. This may be familiar to you if you've taken CS323. See [Time logging](../time_logging.md) for details.
@@ -21,6 +24,7 @@ As in production services, the provided backend services (as well as the network
 Canvas. The Canvas assignment will be up a day or two before the deadline.
 
 Your submission for this lab should include the following files:
+
 ```
 time.log
 discussions.md
@@ -38,9 +42,9 @@ gRPC provides libraries for many languages, including Go. You will be using thes
 For basic examples of how it can be used in Go, check out the [official examples](https://github.com/grpc/grpc-go/tree/master/examples/helloworld).
 
 ### Setup
+
 [Optional] The repo has already run the protobuf compiler to generate the binding code. But if you'd like to learn to do so, you can use the following command (or check out the command in the `Makefile`):
-`protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative video_rec_service/proto/video_rec_service.proto`
-    * Note: protobuf and the related go plugins are included in the devenv Docker container. But if you have other dev environment, you will need to install `protoc`, the protobuf compiler, to get started. You can find instructions in the gPRC documentation: https://grpc.io/docs/protoc-installation/ and the Go plugins following these steps: https://grpc.io/docs/languages/go/quickstart/
+`protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative video_rec_service/proto/video_rec_service.proto` \* Note: protobuf and the related go plugins are included in the devenv Docker container. But if you have other dev environment, you will need to install `protoc`, the protobuf compiler, to get started. You can find instructions in the gPRC documentation: https://grpc.io/docs/protoc-installation/ and the Go plugins following these steps: https://grpc.io/docs/languages/go/quickstart/
 
 ## The Video Recommendation Service
 
@@ -50,12 +54,11 @@ The overall strategy for the video recommending service will be to look at video
 
 The overall architecture diagram is the following:
 ![architecture diagram](./architecture_diagram.png)
-(N.B. you will be implementing the VideoRecService __server__ logic by creating and __using__ the UserService and VideoService __clients__.)
+(N.B. you will be implementing the VideoRecService **server** logic by creating and **using** the UserService and VideoService **clients**.)
 
 [This diagram](./interactions.png) shows the overall flow and logic of the VideoRecService you'll be implementing. Note that you might need to send multiple requests for each arrow in the diagram.
 
 We've provided you with skeleton code in `video_rec_service/server/server.go` and the accompanying server library `video_rec_service/server_lib/server_lib.go`. To try it out, `go run video_rec_service/server/server.go`. This code will start up and run the gRPC server on a given port (default `8080`) for you.
-
 
 ### Part A. Implementing GetTopVideos
 
@@ -85,6 +88,7 @@ To communicate with the `UserService` you'll need to create a gRPC client. We'll
 `grpc.NewClient()` creates a "channel" (in this case, a network stream channel, not a Go built-in `chan`) which allows us to communicate with a server. Use this to create a channel to `UserService`, which you will use in **A3**. For the server address, use the `server.options.UserServiceAddr` which can be set from options passed to your service "constructor" (i.e., `MakeVideoRecServiceServer(options)`). (Note the `DefaultVideoRecServiceOptions()` is only there for convenience in tests; your server should use the values in its member variable, i.e., `server.options`.)
 
 Note: for this lab, we are not using TLS, but `grpc.NewClient()` does expect transport credentials:
+
 ```
 import "google.golang.org/grpc/credentials/insecure"
 ...
@@ -92,6 +96,7 @@ var opts []grpc.DialOption
 opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
 conn, err := grpc.NewClient(address, opts...)
 ```
+
 (This is what `cmd/frontend/frontend.go` does, for reference.)
 
 Note: `grpc.NewClient()` deprecates the previous `grpc.Dial()`, which you can read more about [here](https://github.com/grpc/grpc-go/blob/master/Documentation/anti-patterns.md).
@@ -104,7 +109,7 @@ Many functions in Go can fail, including `grpc.NewClient()`. Go handles this by 
 
 gRPC method handlers follow this standard as well. `GetTopVideos` may return an error as part of its return value, which follows the gRPC error conventions: https://www.grpc.io/docs/guides/error/
 
-For all cases where functions you are calling (like `grpc.NewClient()`) fail, you must appropriately handle these errors and not crash the server. Propagate these back to the return value of `GetTopVideos`, and use `status.Errorf()` to add appropriate error codes and error messages: https://pkg.go.dev/google.golang.org/grpc/status. *All* errors you return from your handler methods **must** have an appropriate error code set.
+For all cases where functions you are calling (like `grpc.NewClient()`) fail, you must appropriately handle these errors and not crash the server. Propagate these back to the return value of `GetTopVideos`, and use `status.Errorf()` to add appropriate error codes and error messages: https://pkg.go.dev/google.golang.org/grpc/status. _All_ errors you return from your handler methods **must** have an appropriate error code set.
 For handling errors, consider also logging them to your output with `log.Printf` or similar methods to help yourself debug these cases later.
 
 Client objects also must be closed when you are done with them -- be sure to call `conn.Close()` appropriately. The [`defer` statement](https://go.dev/tour/flowcontrol/12) may be useful.
@@ -114,6 +119,7 @@ Client objects also must be closed when you are done with them -- be sure to cal
 #### A3. Fetching the user and the users they subscribe to
 
 Once you have a generic client connection from `NewClient`, you can get a typed object to make RPCs to UserService:
+
 ```
 import  upb "cs426.yale.edu/lab1/user_service/proto"
 // ...
@@ -124,7 +130,7 @@ userClient := upb.NewUserServiceClient(conn)
 
 To find the set of videos to rank, you will need to first find the users that the original user (specified by `UserId` on the original request) subscribes to, which is indicated by the `SubscribedTo` slice on the response from `UserService`.
 
-With subscribed-to user IDs, make another call to the `UserService` to find *their* `LikedVideos`.
+With subscribed-to user IDs, make another call to the `UserService` to find _their_ `LikedVideos`.
 Be sure to handle errors from `GetUser` correctly, just as you did in **A2** for `NewClient`.
 
 **Discussion**: What networking/system calls do you think will be used under the hood when you call `GetUser()`? What cases do you think this call / these calls can return an error? You may find the slides from Lecture 3 helpful. Could `GetUser` return errors in cases where the network calls succeed? Include your responses under a heading **A3** in `discussions.md`.
@@ -152,18 +158,20 @@ To rank a single video, you'll need the `UserCoefficients` from the original use
 
 Return the list of candidate videos in **descending** rank order (highest score is a better match), and truncate the list based on the limit in the `GetTopVideosRequest`. If no limit is set (a value of `0`), return all videos. There should not be duplicate videos in the returned list.
 
-Warning: because the ranking algorithm is extremely "sophisticated", for different user video  coefficients pairs, some may take longer than others to compute the scores. No need to be alarmed. The intention is to simulate the differences in computation latency in "real world" scenarios.
+Warning: because the ranking algorithm is extremely "sophisticated", for different user video coefficients pairs, some may take longer than others to compute the scores. No need to be alarmed. The intention is to simulate the differences in computation latency in "real world" scenarios.
 
 #### A6. Testing your implementation as-is
 
 Congratulations! If you've done the preceeding steps all correctly, you should have a basic
 working implementation of `VideoRecService`. To test all of this out locally you'll need to
 run an instance all 3 microservices together. In 3 separate shells (or using background jobs in one shell), run:
- 1. `go run user_service/server/server.go`
- 2. `go run video_service/server/server.go`
- 3. `go run video_rec_service/server/server.go`
+
+1.  `go run user_service/server/server.go`
+2.  `go run video_service/server/server.go`
+3.  `go run video_rec_service/server/server.go`
 
 Once all of those start successfully, run our provided test client with **your own NetId**! For example, Xiao's NetId is `xs66`, therefore, the command to run is the following:
+
 ```
 go run cmd/frontend/frontend.go --net-id=xs66
 ```
@@ -174,6 +182,7 @@ user picked for you as well as the top recommended video in your `discussions.md
 `frontend.go` also includes tests for two hardcoded UserIds and results, which you can use to verify your implementation.
 
 #### A7. Unittesting with mocks
+
 Unit testing is a good way to catch server logic bugs in short and contained
 test runs. In unit tests, it is often desirable to be able to test the
 individual service (in this case `VideoRecService`) separately from its
@@ -228,7 +237,6 @@ the set of IDs among them.
 
 You can test that your functionality works by starting `UserService` and `VideoService` locally (like before) and setting `--batch-size=5` on all three services, then running the steps from **A6** again to see that it does not error.
 
-
 **Discussion**: Should you send the batched requests concurrently? Why or why not? What are the advantages or disadvantages? Include your responses under a heading `A8` in `discussions.md`.
 
 **ExtraCredit2**: Assume that handling one batch request is cheap up to the batch size limit. How could you reduce the total number of requests to `UserService` and `VideoService` using batching, assuming you have many incoming requests to `VideoRecService`? Describe how you would implement this at a high-level (bullet points and pseudocode are fine) but you do not need to implement it in your service.
@@ -239,11 +247,12 @@ Include your responses under a heading `ExtraCredit2` in `discussions.md`.
 A key part of operating a real service is **observability**---being able to monitor and inspect the service, see if it is healthy, and find out what is wrong if it is not healthy. To this end, you will implement a primitive stats API as an RPC (though for a production serivce, you may likely have stats baked in to the framework or libraries you are using).
 
 #### B1. Implement `GetStats`
+
 To implement the `GetStats` method, you'll need to keep track of calls to your `GetTopVideos` implementation including:
 
 1. The total number of requests to `GetTopVideos` (ignore calls to `GetStats`) over the uptime of your service, as a simple counter.
 2. Total number of requests to `GetTopVideos` which returned an error over the uptime of your service, as a counter.
-3. The current number of active requests or *in-progress* calls to `GetTopVideos`.
+3. The current number of active requests or _in-progress_ calls to `GetTopVideos`.
 4. The total number of errors returned in attempts to call `UserService` or `VideoService` respectively (in calls to `Dial` or the RPC methods themselves).
 5. The average latency (in milliseconds) of processing `GetTopVideos` requests over all requests over the uptime of your service.
 6. For **ExtraCredit3**, the 99th percentile latency (in ms) of processing `GetTopVideos` requests. You may use third-party packages such as [t-digest](https://pkg.go.dev/github.com/influxdata/tdigest). You can assume that the grader will run `go mod tidy` to update `go.mod` before running your code.
@@ -259,8 +268,8 @@ func (server *VideoRecServiceServer) GetStats(
 ) (*pb.GetStatsResponse, error) {
 }
 ```
-and use the recorded stats to fill out the appropriate response.
 
+and use the recorded stats to fill out the appropriate response.
 
 #### B2. Testing your stats implementation
 
@@ -270,10 +279,11 @@ stats client with `go run cmd/stats/stats.go` in another. Initially all your met
 Run the continuous load generation tool with `go run cmd/loadgen/loadgen.go --target-qps=10` and watch your metrics go up. Note neither the stats client nor the loadgen tool terminates on its own, feel free to Ctrl+C after you see non-zero values. Include a copy of your metrics including average latency under heading **B2** in your `discussions.md`.
 
 Notes:
-* You may need to run `go get golang.org/x/time/rate`, which is a rate limiting library that loadgen uses.
-* In the process of running loadgen (especially if you attempt a higher target QPS), you may run into errors like "socket: too many open files" (i.e., hitting the file descriptor limit). Check `ulimit -n` and set it to a higher number (e.g., `ulimit -n 65535`).
-* The `ranker` library and functions are intentionally computationally intensive (i.e., can be the majority of your request handling latency) to mimic real world systems that perform useful work but could take a while. Processing latency of a single request given the ranking could be hundreds of milliseconds (on an M1 MacBook Pro) or more.
-* You should, however, make sure your requests can be processed concurrently. gRPC servers will call your `GetTopVideos` method concurrently if there are concurrent requests (like from loadgen). E.g., if you take locks for too long (particularly holding them during ranking), it will limit throughput.
+
+- You may need to run `go get golang.org/x/time/rate`, which is a rate limiting library that loadgen uses.
+- In the process of running loadgen (especially if you attempt a higher target QPS), you may run into errors like "socket: too many open files" (i.e., hitting the file descriptor limit). Check `ulimit -n` and set it to a higher number (e.g., `ulimit -n 65535`).
+- The `ranker` library and functions are intentionally computationally intensive (i.e., can be the majority of your request handling latency) to mimic real world systems that perform useful work but could take a while. Processing latency of a single request given the ranking could be hundreds of milliseconds (on an M1 MacBook Pro) or more.
+- You should, however, make sure your requests can be processed concurrently. gRPC servers will call your `GetTopVideos` method concurrently if there are concurrent requests (like from loadgen). E.g., if you take locks for too long (particularly holding them during ranking), it will limit throughput.
 
 ### Part C. Handling errors from dependencies
 
@@ -290,24 +300,24 @@ Run the loadgen client with 10 target QPS (see instructions in **B2**) and see h
 
 #### C1. Retrying failed upstream requests
 
-One strategy for improving reliability in the face of short-lived transient failures is to simply *retry* a request to an upstream service. A request may fail due to a network blip or a service quickly restarting, and retrying can help cover these scenarios. In a distributed environment, retries critically may try a *different* backend host that may not be experiencing issues.
+One strategy for improving reliability in the face of short-lived transient failures is to simply _retry_ a request to an upstream service. A request may fail due to a network blip or a service quickly restarting, and retrying can help cover these scenarios. In a distributed environment, retries critically may try a _different_ backend host that may not be experiencing issues.
 
-In case of an error from `UserService` or `VideoService`, add a *single* retry on failed RPCs and *single* retry on failed calls to `Dial`.
+In case of an error from `UserService` or `VideoService`, add a _single_ retry on failed RPCs and _single_ retry on failed calls to `Dial`.
 
 Run the test from above (with a failure rate of 1 in 10 on VideoService) and see how your service performs now.
 
-**Discussion**: Why might retrying be a bad option? In what cases should you *not* retry a request? Add your response under heading **C1** in `discussions.md`.
+**Discussion**: Why might retrying be a bad option? In what cases should you _not_ retry a request? Add your response under heading **C1** in `discussions.md`.
 
 #### C2. Fallback recommendations
 
 Retrying can't fix every issue, sometimes services may be down for an extended period of time.
-In the case of extended downtime, we still want to provide *some* video recommendations to the
+In the case of extended downtime, we still want to provide _some_ video recommendations to the
 user. `VideoService` has implemented a trending videos RPC `GetTrendingVideos` which returns
-globally popular videos. We can use these trending videos as a *fallback* recommendation to the
+globally popular videos. We can use these trending videos as a _fallback_ recommendation to the
 user when we cannot provide personalized recommendations.
 
 One catch with using this fallback is that `VideoService` may be the service experiencing
-issues --- we can't call the trending API if it is down! Your job will to build a *cache*
+issues --- we can't call the trending API if it is down! Your job will to build a _cache_
 of the trending videos and keep it relatively up-to-date to use as a fallback strategy.
 Overall general strategy:
 
@@ -322,7 +332,6 @@ In cases where this fallback strategy is used we may want the users of our API t
 they can show a message that the recommendations may be degraded (or just log it to their logs).
 If fallback recommendations are used on a request, set the `stale_response` field on the `GetTopVideosResponse`. On a similar note, keep track of the number of requests that returned
 a fallback response and use it to fill the `stale_responses` part of the `GetStats` RPC.
-
 
 **Discussion**: What should you do if `VideoService` is still down and your responses are past expiration? Return expired responses or an error? What are the tradeoffs?
 
@@ -340,12 +349,11 @@ of `VideoRecService` (successful, and useful responses) in the event of failures
 or `VideoService`. What tradeoffs would you make and why? Add your response under heading **C3** in `discussions.md`.
 
 #### C4. Connection management
+
 In part **A** you likely created new connections via `grpc.NewClient()` to `UserService` and `VideoService` on every
 request when you needed to use them. What might be costly about connection establishment? (hint: for a high-throughput service you would want to avoid repeated connection
 establishment.) How could you change your implementation to avoid per-request connection establishment? Does it have any tradeoffs (consider
 topics such as load balancing from the course lectures)? Note your discussion under **C4** in `discussions.md`, but
 you do not have to change your implementation.
 
-
 # End of Lab 1
-

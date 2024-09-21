@@ -1,6 +1,7 @@
 # Collaboration and AI Policy
 
 ## General Statement on Collaboration
+
 TL;DR: Same as [CS323](https://zoo.cs.yale.edu/classes/cs323/current/syllabus.html) for the individual labs (Labs 0-3).
 
 Programming, like composition, is an individual creative process in which you must reach your own understanding of the problem and discover a path to its solution. During this time, discussions with others (including members of the teaching staff) are encouraged. But see the Gilligan's Island Rule below.
@@ -28,6 +29,7 @@ Treat AI agents and copilots as you would treat a human tutor or a friend. The a
 We acknowledge there is a gray area where the help from AI borderlines "too much", we remind you that how much you get out of the course is largely dependent on you and your choices.
 
 Examples:
+
 - Copy pasting questions from the lab directly to ChatGPT and submitting its answers: no.
 - Using ChatGPT to brainstorm ideas for a project: yes.
 - Asking Claude to write a function for you: no.

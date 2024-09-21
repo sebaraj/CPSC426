@@ -56,9 +56,10 @@ func TestSemaphore(t *testing.T) {
 		var err2 error
 		done := make(chan struct{})
 		var sum int64
+		sum = 0
 		go func() {
 			for {
-				if sum == 3 {
+				if sum == 9 {
 					close(done)
 					return
 				}
@@ -69,31 +70,33 @@ func TestSemaphore(t *testing.T) {
 		go func(sum *int64) {
 			err = s.Wait(context.Background())
 			*sum += 1
+			println("sum: ", *sum)
 			// atomic.AddInt64(sum, 1)
 			s.Post()
 		}(&sum)
 
 		go func(sum *int64) {
 			err1 = s.Wait(context.Background())
-			*sum += 1
-
+			*sum += 3
+			println("sum: ", *sum)
 			// atomic.AddInt64(sum, 1)
 			s.Post()
 		}(&sum)
 
 		go func(sum *int64) {
 			err2 = s.Wait(context.Background())
-			*sum += 1
+			*sum += 5
+			println("sum: ", *sum)
 			// atomic.AddInt64(sum, 1)
 			s.Post()
 		}(&sum)
 		s.Post()
-		time.Sleep(10 * time.Millisecond)
+		<-done
 		err3 := s.Wait(context.Background())
 		// err = s.Wait(context.Background())
 		// err1 = s.Wait(context.Background())
 		// err2 = s.Wait(context.Background())
-		require.Equal(t, atomic.LoadInt64(&sum), int64(3))
+		require.Equal(t, atomic.LoadInt64(&sum), int64(9))
 		require.NoError(t, err)
 		require.NoError(t, err1)
 		require.NoError(t, err2)

@@ -1,6 +1,7 @@
 # CS426 Lab 2: Deployment and operations
 
 ## Overview
+
 In this lab, you will deploy the VideoRecService you built in Lab 1 using Kubernetes on Google Cloud.
 You will learn the basics of creating Docker images, Kubernetes deployments and services, and optimize
 your VideoRecService implementation with connection pooling.
@@ -12,7 +13,9 @@ Please be conservative and careful with your usage to avoid overloading the shar
 with the cluster or shared tooling please reach out to us via Ed or email.
 
 ## Logistics
+
 **Policies**
+
 - This lab is meant to be an **individual** assignment. Please see the [Collaboration Policy](../collaboration_and_ai_policy.md) for details.
 - We will help you strategize how to debug but WE WILL NOT DEBUG YOUR CODE FOR YOU.
 - Please keep and submit a time log of time spent and major challenges you've encountered. This may be familiar to you if you've taken CS323. See [Time logging](../time_logging.md) for details.

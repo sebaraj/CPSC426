@@ -3,6 +3,7 @@
 Please make sure you read and understood the [Collaboration and AI Policy](collaboration_and_ai_policy.md) and [Time Logging](time_logging.md).
 
 ## Development Environment
+
 See the guide [here](devenv/README.md).
 
 ## Labs
@@ -25,6 +26,7 @@ See the guide [here](devenv/README.md).
      - Last day of final exam; you cannot use the discretionary hours as per Yale College's regulations.
 
 ## Questions?
+
 Post to Canvas/Ed (preferred) or email the teaching staff:
   - Richard Yang (yry@cs.yale.edu)
   - Xiao Shi (xiao.shi@yale.edu)
@@ -33,6 +35,7 @@ Post to Canvas/Ed (preferred) or email the teaching staff:
   - Brian Choi (brian.choi@yale.edu)
 
 ## Tips on asking good questions / help us help you
+
 - First, try to find the answer(s) by Googling. See the [Collaboration Policy](collaboration_and_ai_policy.md) about rules re: code reuse and attribution.
 - For technical questions, prefer posting publicly to Ed such that your classmates may answer your question(s) and benefit from the answer(s).
 - Help your classmates by answering their questions! You are not in competition with one another, so help each other learn!
