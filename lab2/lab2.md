@@ -183,7 +183,9 @@ To decode it, you can run this bash one-liner:
 kubectl get secret docker-credentials -o jsonpath="{.data.\\.dockerconfigjson}" | base64 -d
 ```
 
-The username should be your Net ID, and the password should be a combination of 5-letter words (from [Wordle](https://www.nytimes.com/games/wordle/index.html)).
+The username should be your Net ID, and the password is of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format, e.g., `7e712016-67ae-4f56-9477-7c4b1dafdf86`.
+
+**Extra Credit** What are the properties of the UUID format? Many languages have standard libraries for generating UUIDs. How does its generation guaratee universal uniqueness? Include your answer in `discussions.md` under header `UUID`.
 
 Use the username and password to login to the Docker registry. Note: in your devenv, you need to use `sudo` (otherwise the login might show up as succeeding but will cause issues down the line).
 
