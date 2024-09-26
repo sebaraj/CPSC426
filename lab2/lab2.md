@@ -19,7 +19,8 @@ with the cluster or shared tooling please reach out to us via Ed or email.
 
 - Questions? post to [Ed](https://edstem.org/us/courses/65981/discussion/) or email the teaching staff at cs426ta@cs.yale.edu.
 
-**Submission deadline: ~23:59 ET Wednesday Oct 2, 2024~ 23:59 ET Friday Oct 4, 2024**
+**Submission deadline: 23:59 ET Friday Oct 4 ~~Wednesday Oct 2~~, 2024**
+
 
 **Submission logistics**
 Submit a `.tar.gz` archive named after your NetID via
