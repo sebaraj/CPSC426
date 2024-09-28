@@ -58,7 +58,7 @@ KUBECONFIG=configs/sp2432.kubecfg kubectl get secret
 ```
 or
 ```
-kubectl --kubeconfig=configs/sp2432.kubecfg kubectl secret
+kubectl --kubeconfig=configs/sp2432.kubecfg get secret
 ```
 
 Or set an environment variable for your current bash session (need to do this every time you open a new shell):
