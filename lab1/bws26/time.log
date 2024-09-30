@@ -1,0 +1,35 @@
+ESTIMATE of time to complete assignment: 15 hours
+
+       Time     Time
+Date   Started  Spent  Work Completed
+-----  -------  -----  --------------
+09/13  09:23PM  03:50  Skimmed codebase, completed code for A1-A6. 
+09/14  01:30PM  02:00  Implemented code for A8-B2
+09/14  05:40PM  00:55  Implemented code for A7, worked on discussion questions for earlier parts
+09/14  09:30PM  01:00  Part of discussion
+09/15  11:00AM  01:00  Added concurrency to batching requests for user/video service 
+09/16  03:00PM  02:00  Implemnted part C2 and handled concurrent cache return/failure
+09/17  07:00PM  03:00  debugged cache thread sleep time to avoid busy waiting/resource consumption; ranked trending videos based on user coefficients if failure occurs after userInfo is successfully returned (see Ed #44); returning correct error codes 
+09/18  01:10PM  03:30  corrected error codes; implemented max batch size finder to handle cases where User|VideoService max batch size < VideoRecService max batch size
+09/19  06:30PM  02:20  5 unit tests; better failure handling with service max batch size finder; fixed a channel size bug
+09/20  01:00PM  02:00  tried to debug iterative testing (see Ed #61), handled req.Limit edge case, finished discussion, cleaned up codebase
+
+                -----
+                22:35  TOTAL time spent
+
+I discussed my solution with: ChatGPT (syntax questions, two's complement of 0 to add -1 to uint, etc), Copilot (autocomplete snippets, see pset 0) 
+
+DISCUSSION:
+
+As I have worked with gRPC/go before, I found the "required" implementation of
+this problem set straight forward. However, this problem set showed me just how
+many "edge" cases that I need to handle without the service completely failing.
+As I was creating my suite of test cases, testing both trivial and end-to-end
+functionality of the VideoRecService, I was able to "break" my current
+implementation and find more errors. I especially found it very
+tedious/annoying to debug the numerous layers of complexity that concurrency
+requires, e.g. debugging my original implementation of serially making requests
+to the User|VideoService more straight-forward that debugging the concurrent
+requests, using channels/locks/atomics, while still maintaining correct stat
+tracking, and I struggled to debug Ed #61.  
+

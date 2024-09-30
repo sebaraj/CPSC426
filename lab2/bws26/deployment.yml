@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-rec
+  labels:
+    app: video-rec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: video-rec
+  template:
+    metadata:
+      labels:
+        app: video-rec
+    spec:
+      imagePullSecrets:
+        - name: docker-credentials
+      containers:
+        - name: video-rec
+          image: registry.cs426.cloud/bws26/video-rec-service:latest
+          ports:
+            - containerPort: 8080
+          command: ["./app"]
+          args:
+            [
+              "--batch-size=50",
+              "--user-service=$(USER_SERVICE_ADDRESS):8081",
+              "--video-service=$(VIDEO_SERVICE_ADDRESS):8082",
+              "--no-fallback=$(DISABLE_FALLBACK)",
+              "--no-retry=$(DISABLE_RETRY)",
+              "--client-pool-size=$(CLIENT_POOL_SIZE)",
+            ]
+          env:
+            - name: USER_SERVICE_ADDRESS
+              value: "user-service.default.svc.cluster.local"
+            - name: VIDEO_SERVICE_ADDRESS
+              value: "video-service.default.svc.cluster.local"
+            - name: DISABLE_FALLBACK
+              value: "false"
+            - name: DISABLE_RETRY
+              value: "false"
+            - name: CLIENT_POOL_SIZE
+              value: "4"
+          imagePullPolicy: Always

@@ -39,11 +39,6 @@ var (
 		false,
 		"If set, disable all retries",
 	)
-	clientPoolSize = flag.Int(
-		"client-pool-size",
-		4,
-		"Number of clients for user and video services, each",
-	)
 )
 
 func main() {
@@ -60,18 +55,10 @@ func main() {
 		MaxBatchSize:     *maxBatchSize,
 		DisableFallback:  *disableFallback,
 		DisableRetry:     *disableRetry,
-		ClientPoolSize:   *clientPoolSize,
 	})
 	if err != nil {
 		log.Fatalf("failed to start server: %q", err)
 	}
-	for i := 0; i < *clientPoolSize; i++ {
-		defer server.UserClientConn[i].Close()
-		defer server.VideoClientConn[i].Close()
-	}
-	// defer server.UserClientConn.Close()
-	// defer server.VideoClientConn.Close()
-
 	go server.ContinuallyRefreshCache()
 	pb.RegisterVideoRecServiceServer(s, server)
 	log.Printf("server listening at %v", lis.Addr())

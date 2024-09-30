@@ -1,0 +1,16 @@
+apiVersion: cs426.cloud/v1
+kind: LoadgenResult
+metadata:
+  creationTimestamp: "2024-09-23T15:00:37Z"
+  generation: 1
+  name: video-rec-service-loadgen-req
+  namespace: bws26
+  resourceVersion: "15424368"
+  uid: e30ace85-66e5-4ba3-a907-6edf0480fb54
+spec:
+  average_latency_ms: 2089.8118
+  duration_s: 60
+  error_msg: ""
+  errors: 0
+  requests: 101
+  stale_responses: 0
