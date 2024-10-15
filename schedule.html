@@ -176,7 +176,7 @@
                     <span class="date">Oct 2</span>
                     <div class="cell-content wednesday-split">
                         <div class="wednesday-left"></div>
-                        <div class="wednesday-right lab-release">Lab 3 (Raft) released</div>
+                        <div class="wednesday-right lab-release"><a href="https://git.cs426.cloud/labs/cs426-fall24/src/branch/main/lab3/lab3.md">Lab 3 (Raft) released</a></div>
                     </div>
                 </td>
                 <td><span class="date">Oct 3</span><div class="cell-content">K8s impl 2, Raft</div></td>
@@ -184,9 +184,9 @@
             </tr>
             <tr>
                 <td>6</td>
-                <td class="module" rowspan="4">Stateful services</td>
+                <td class="module" rowspan="5">Stateful services</td>
                 <td><span class="date">Oct 7</span></td>
-                <td><span class="date">Oct 8</span><div class="cell-content">Scaling 1: Replication, linearizability<br><span class="preparation">Preparation:</span> read <a href="https://cs.brown.edu/~mph/HerlihyW90/p463-herlihy.pdf">Herlihy and Wing 1990</a> (Sections 1 and 2)</div></td>
+                <td><span class="date">Oct 8</span><div class="cell-content">Raft cont'd, consensus, shared logs</div></td>
                 <td>
                     <span class="date">Oct 9</span>
                     <div class="cell-content wednesday-split">
@@ -194,19 +194,20 @@
                         <div class="wednesday-right"></div>
                     </div>
                 </td>
-                <td><span class="date">Oct 10</span><div class="cell-content">Linearizabilty cont'd, consensus, shared logs</div></td>
-                <td><span class="date">Oct 11</span><span class="due-date">Part of Lab 3 (A + B [basic agreement test]) due</span></td>
+                <td><span class="date">Oct 10</span><div class="cell-content">Scaling 1: Replication</div></td>
+                <td><span class="date">Oct 11</span></td>
             </tr>
             <tr>
                 <td>7</td>
                 <td><span class="date">Oct 14</span></td>
-                <td><span class="date">Oct 15</span><div class="cell-content"><span class="exam">Exam 1</span> (35-45 minutes length TBD)<br>Half lecture: Scaling 2: Caching</div></td>
-                <td class="module fall-break break-cell" colspan="3">Fall break</td>
+                <td><span class="date">Oct 15</span><div class="cell-content"><span class="exam">Exam 1</span> (35-45 minutes length TBD)<br>Half lecture: Linearizability<br><span class="preparation">Preparation:</span> read <a href="https://cs.brown.edu/~mph/HerlihyW90/p463-herlihy.pdf">Herlihy and Wing 1990</a> (Sections 1 and 2)</div></td>
+                <td class="module fall-break break-cell" colspan="2">Fall break</td>
+                <td class="break-cell fall-break"><span class="date">Oct 18</span><span class="due-date">Part of Lab 3 (A + B [basic agreement test]) due</span></td>
             </tr>
             <tr>
                 <td>8</td>
                 <td><span class="date">Oct 21</span></td>
-                <td><span class="date">Oct 22</span><div class="cell-content">Scaling 3: Sharding</div></td>
+                <td><span class="date">Oct 22</span><div class="cell-content">Scaling 2: Caching</div></td>
                 <td>
                     <span class="date">Oct 23</span>
                     <div class="cell-content wednesday-split">
@@ -214,13 +215,13 @@
                         <div class="wednesday-right lab-release">Lab 4 released</div>
                     </div>
                 </td>
-                <td><span class="date">Oct 24</span><div class="cell-content">Database primer, transactions, ACID</div><span class="preparation">Preparation:</span> read <a href="http://www.bailis.org/blog/linearizability-versus-serializability/">Linearizability vs. Serializability</a> (Peter Bailis' short but pithy blog post)</td>
+                <td><span class="date">Oct 24</span><div class="cell-content">Scaling 3: Sharding</div></td>
                 <td><span class="date">Oct 25</span></td>
             </tr>
             <tr>
                 <td>9</td>
                 <td><span class="date">Oct 28</span></td>
-                <td><span class="date">Oct 29</span><div class="cell-content">Distributed transactions<br><span class="preparation">Preperation:</span> read the <a href="https://static.googleusercontent.com/media/research.google.com/en//archive/spanner-osdi2012.pdf">Spanner</a> paper</div></td>
+                <td><span class="date">Oct 29</span><div class="cell-content">Database primer, transactions, ACID<br><span class="preparation">Preparation:</span> read <a href="http://www.bailis.org/blog/linearizability-versus-serializability/">Linearizability vs. Serializability</a> (Peter Bailis' short but pithy blog post)</div></td>
                 <td>
                     <span class="date">Oct 30</span>
                     <div class="cell-content wednesday-split">
@@ -228,14 +229,13 @@
                         <div class="wednesday-right"></div>
                     </div>
                 </td>
-                <td><span class="date">Oct 31</span><div class="cell-content">Ordering and consistency<br><span class="preparation">Preparation:</span> read <a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">Dynamo</a> (excerpts TBD) and <a href="https://www.usenix.org/system/files/osdi20-shi.pdf">FlightTracker</a> (excerpts TBD)</div></td>
+                <td><span class="date">Oct 31</span><div class="cell-content">Distributed transactions<br><span class="preparation">Preperation:</span> read the <a href="https://static.googleusercontent.com/media/research.google.com/en//archive/spanner-osdi2012.pdf">Spanner</a> paper</div></td>
                 <td><span class="date">Nov 1</span></td>
             </tr>
             <tr>
                 <td>10</td>
-                <td class="module" rowspan="6">Distributed systems in the wild</td>
                 <td><span class="date">Nov 4</span></td>
-                <td><span class="date">Nov 5</span><div class="cell-content">Distributed machine learning (DSML) 1</div></td>
+                <td><span class="date">Nov 5</span><div class="cell-content">Ordering and consistency 1<br><span class="preparation">Preparation:</span> read <a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">Dynamo</a> (excerpts TBD) and <a href="https://www.usenix.org/system/files/osdi20-shi.pdf">FlightTracker</a> (excerpts TBD)</div></td>
                 <td>
                     <span class="date">Nov 6</span>
                     <div class="cell-content wednesday-split">
@@ -243,13 +243,14 @@
                         <div class="wednesday-right lab-release">Lab 5 (DSML) released</div>
                     </div>
                 </td>
-                <td><span class="date">Nov 7</span><div class="cell-content">DSML 2</div></td>
+                <td><span class="date">Nov 7</span><div class="cell-content">Ordering and consistency 2</div></td>
                 <td><span class="date">Nov 8</span></td>
             </tr>
             <tr>
                 <td>11</td>
+                <td class="module" rowspan="4">Distributed systems in the wild</td>
                 <td><span class="date">Nov 11</span></td>
-                <td><span class="date">Nov 12</span><div class="cell-content">DSML 3</div></td>
+                <td><span class="date">Nov 12</span><div class="cell-content">Distributed machine learning (DSML) 1</div></td>
                 <td>
                     <span class="date">Nov 13</span>
                     <div class="cell-content wednesday-split">
