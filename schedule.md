@@ -84,7 +84,7 @@
 - **Topic:** Scaling 2: Caching
 
 ### Wednesday, Oct 23
-- [Lab 4 released]
+- [Lab 4 released](https://git.cs426.cloud/labs/cs426-fall24/src/branch/main/lab4/lab4.md)
 
 ### Thursday, Oct 24
 - **Topic:** Scaling 3: Sharding
@@ -96,6 +96,7 @@
 
 ### Wednesday, Oct 30
 - **Due:** Lab 3 due
+- Final project requirements released
 
 ### Thursday, Oct 31
 - **Topic:** Distributed transactions
@@ -108,7 +109,6 @@
 
 ### Wednesday, Nov 6
 - **Due:** Lab 4 due
-- **Lab 5 (DSML) released**
 
 ### Thursday, Nov 7
 - **Topic:** Ordering and consistency 2
@@ -118,6 +118,9 @@
 ### Tuesday, Nov 12
 - **Topic:** Distributed machine learning (DSML) 1
 
+### Wednesday, Nov 13
+- **Due:** Final project (Lab 5) proposal due
+
 ### Thursday, Nov 14
 - **Topic:** DSML 2
 
@@ -125,8 +128,6 @@
 ### Tuesday, Nov 19
 - **Topic:** DSML 3
 
-### Wednesday, Nov 20
-- **Due:** Lab 5 due
 
 ### Thursday, Nov 21
 - **Topic:** TBD
@@ -145,7 +146,7 @@
 # Finals Week
 ## Week 16
 ### Wednesday, Dec 18
-- **Due:** Final project (Lab 6) due
+- **Due:** Final project due
 
 ### Thursday, Dec 19
 - **Event:** Winter recess begins
