@@ -18,7 +18,7 @@ See the guide [here](devenv/README.md).
  - Lab 4: Sharded key-value cache (moderate)
    - Due: 23:59 ET Wed Nov 6, 2024
  - Lab 5: Final project
-   - Detailed requirements to be released. Distributed Machine Learning will be an option with some sketched guidance.
+   - Detailed requirements to be released. Distributed Machine Learning is be an option with a sketched [outline](./lab-dsml/lab.md) -- you must still submit a proposal.
    - [Requirements and ideas **from 2023 for reference**](https://docs.google.com/document/d/1J6Do0IPsnUsrfRx7VFjwPNFUSYVBA0BZ/edit)
    - Proposals due: 23:59 ET Wed Nov 13, 2024
    - Final deliverables due: **17:30** ET Dec 18, 2024
