@@ -27,7 +27,7 @@ COPY --from=builder /go/bin/app .
 
 EXPOSE 8080
 
-CMD ["./app"]
+ENTRYPOINT ["./app"]
 
 
 

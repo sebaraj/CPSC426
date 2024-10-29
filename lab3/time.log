@@ -1,0 +1,48 @@
+ESTIMATE of time to complete assignment: 30 hours
+
+       Time     Time
+Date   Started  Spent  Work Completed
+-----  -------  -----  --------------
+09/30  09:00PM  02:00  Read Raft paper
+10/01  03:40PM  02:30  Read through lab3.md and codebase; wrote outline/pseudocode for A1
+10/05  11:00PM  04:00  Wrote Start(), RequestVote(), sendRequestVote(), RequestVoteArgs, RequestVoteReply, LogElement, Make(), and ticker()
+10/06  11:30PM  02:20  Debugged voting and started heartbeat outline/implementation
+10/07  10:00PM  03:30  Rewrote heartbeats/sending AppendEntries RPC; implemented AppenEntriesArgs, AppendEntriesResults, applyLogs()
+10/08  05:00PM  02:30  Finished heartbeats/log replication; cleaned up codebase
+10/09  07:00PM  02:00  Added more error handling/correctness logic 
+10/18  06:30PM  05:00  Attempted 3C-1, 3C-2, 3C-3 
+10/19  06:00PM  03:00  Debugged labgob warning and completed discussion (3A-2 and EC1). Attempted to debug various non-deterministic errors
+10/20  08:00PM  02:30  Debugged some non-deterministic errors
+10/21  10:30AM  02:00  Debugged non-deterministic error (data race on request/return values)
+10/21  07:00PM  03:00  "Debugged" channel fill error (recognized default go -test timeout was 10 minutes); debugged non-determistic errors in unit tests with `make_config ... cfg.one()` (follower timeout was too short); updated time.log/discussion
+10/22  08:00PM  02:30  Wrote unit tests 
+10/23  09:00PM  00:05  Ran tests ~250 times to test for non-determinism (afk); increased raft election timeout
+                -----
+                36:50  TOTAL time spent
+
+I discussed my solution with: GitHub Copilot (autocomplete) 
+
+DISCUSSION: 
+
+This assignment was nothing short of a non-deterministic nightmare. Having
+taken CPSC 465 (Theory of Distributed Systems), understanding Raft as an
+algorithm was rather straightforward. However, implementing the algorithm in go
+was quite complex. While I was comfortable with the concurrent aspects, I found
+the need to be very precise with how I defined by control flow, which itself was
+challenging to debug. Fortunately, I was already comfortable with
+(nvim) DAP from C++, so I set it up for go to solve these logic
+issues. However, these were some of the more trivial things to debug, and I
+particularly pulled my hair out at some of the non-deterministic bugs. Particularly,
+some of the data races on AppendEntriesArgs and AppendEntriesResults (which is 
+not part of the raft state but still required a mutex-protected deep copy to pass 
+the -race flag) and non-deterministic failure of unit tests with  with `make_config
+... cfg.one()`. I was able to debug the former by improving my skills reading the
+go stack trace/understanding the purpose/impact of the various go functions
+(shoutout LSP go to definition) and the latter by utilizing various DPrintf 
+statements to reveal the state/actions of each node. I was also able to drastically
+improve mediocre understanding of the go testingpackage, spending hours attempted
+to debug an apparent deterministic channel bugto only realize that 
+`go test -race -count 5 ./raft` would always timeout at 10 minutes due to the
+default timout for `go test` :|.
+
+

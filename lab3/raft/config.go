@@ -9,19 +9,19 @@ package raft
 //
 
 import (
+	"encoding/base64"
+	"fmt"
 	"log"
+	"math/big"
 	"math/rand"
 	"runtime"
 	"sync"
 	"testing"
+	"time"
 
 	"6.824/labrpc"
 
 	crand "crypto/rand"
-	"encoding/base64"
-	"fmt"
-	"math/big"
-	"time"
 )
 
 func randstring(n int) string {
@@ -174,13 +174,11 @@ func (cfg *config) applier(i int, applyCh chan ApplyMsg) {
 	}
 }
 
-//
 // start or re-start a Raft.
 // if one already exists, "kill" it first.
 // allocate new outgoing port file names, and a new
 // state persister, to isolate previous instance of
 // this server. since we cannot really kill it.
-//
 func (cfg *config) start1(i int, applier func(int, chan ApplyMsg)) {
 	cfg.crash1(i)
 
@@ -468,9 +466,11 @@ func (cfg *config) one(cmd interface{}, expectedServers int, retry bool) int {
 			// somebody claimed to be the leader and to have
 			// submitted our command; wait a while for agreement.
 			t1 := time.Now()
+			// NOTE: erroring here?
 			for time.Since(t1).Seconds() < 5 {
 				nd, cmd1 := cfg.nCommitted(index)
 				if nd > 0 && nd >= expectedServers {
+					// println("nd: ", nd, ". cmd1: ", cmd1, ". cmd: ", cmd) // NOTE: get rid of
 					// committed
 					if cmd1 == cmd {
 						// and it was the command we submitted.

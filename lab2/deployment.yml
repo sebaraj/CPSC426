@@ -21,7 +21,7 @@ spec:
           image: registry.cs426.cloud/bws26/video-rec-service:latest
           ports:
             - containerPort: 8080
-          command: ["./app"]
+          # command: ["./app"]
           args:
             [
               "--batch-size=50",
